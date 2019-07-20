@@ -1,12 +1,12 @@
 import React from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 
-import App from './App'
+import Register from './pages/Register'
 
 const Router = () => {
   return(
     <BrowserRouter>
-      <Route path="/" exact component={App} />
+      <Route path="/" exact component={Register} />
     </BrowserRouter>
   )
 }
