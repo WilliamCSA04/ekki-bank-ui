@@ -13,7 +13,11 @@ const useStyles = makeStyles(theme => ({
 function Button(props){
   const classes = useStyles()
   return (
-    <MaterialButton variant={props.variant} color={props.color} className={classes.margin}>{props.children}</MaterialButton>
+    <MaterialButton 
+      variant={props.variant} 
+      color={props.color} 
+      className={classes.margin}>{props.children}
+    </MaterialButton>
   );
 }
 
