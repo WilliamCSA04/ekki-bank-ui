@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
-import Paper from '../../components/Paper.js';
-import { Typography } from '../../../node_modules/@material-ui/core';
+import ContactList from './components/ContactList.js';
 
 class Contact extends Component {
   render() {
-    return (
-      <Paper>
-        <Typography>Paper</Typography>
-      </Paper>
-    );
+    return <ContactList />;
   }
 }
 
