@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Typography, ListItem } from '@material-ui/core';
+import { ListItemText, ListItem, Icon } from '@material-ui/core';
 import Paper from '../../../components/Paper.js';
+import Inline from '../../../components/Inline.js';
 
 
 class ContactListItem extends Component {
@@ -8,7 +9,12 @@ class ContactListItem extends Component {
     return (
       <ListItem>
         <Paper>
-          <Typography>Paper</Typography>
+          <ListItemText>Nome: Irelia</ListItemText>
+          <Inline>
+            <Icon>attach_money</Icon>
+            <Icon>edit</Icon>
+            <Icon>delete_outline</Icon>
+          </Inline>
         </Paper>
       </ListItem>
     );
