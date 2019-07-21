@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { ListItemText, ListItem, Icon, Table, TableBody, TableRow, TableCell, Typography, TextField, InputAdornment } from '@material-ui/core';
+import { ListItemText, ListItem, Icon, Table, TableBody, TableRow, TableCell, Typography, IconButton, TextField, InputAdornment } from '@material-ui/core';
 import Paper from '../../../components/Paper.js';
 import Inline from '../../../components/Inline.js';
 import Modal from '../../../components/Modal.js';
@@ -17,6 +17,13 @@ class ContactListItem extends Component {
     }
   }
 
+  onClickModal = e => {
+    e.preventDefault();
+    const { model } = this.state
+    model.open = !model.open
+    this.setState({model})
+  }
+
   render() {
     const { model } = this.state
     return (
@@ -31,7 +38,7 @@ class ContactListItem extends Component {
               }}
             />
             <Button variant="contained" color="primary" size="small">Transferir</Button>
-            <Button variant="contained" color="secondary" size="small">Fechar</Button>
+            <Button variant="contained" color="secondary" size="small" onClick={this.onClickModal}>Fechar</Button>
           </Form>
         </Modal>
         <ListItem>
@@ -42,12 +49,18 @@ class ContactListItem extends Component {
                   <TableCell style={{border: "none"}}>
                     <ListItemText>Nome: Irelia</ListItemText>
                     <Inline>
-                      <Icon>edit</Icon>
-                      <Icon>delete_outline</Icon>
+                      <IconButton aria-label="editar">
+                        <Icon>edit</Icon>
+                        </IconButton>
+                      <IconButton aria-label="deletar">
+                        <Icon>delete_outline</Icon>
+                      </IconButton>
                     </Inline>
                   </TableCell>
                   <TableCell align="right" style={{border: "none"}}>
-                    <Icon>chevron_right</Icon>
+                    <IconButton aria-label="Abrir modal de transferencia" onClick={this.onClickModal}>
+                      <Icon>chevron_right</Icon>
+                    </IconButton>
                   </TableCell>
                 </TableRow>
               </TableBody>
