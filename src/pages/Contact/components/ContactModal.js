@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import Modal from '../../../components/Modal.js';
-import { Typography, TextField, InputAdornment } from '@material-ui/core'
+import { TextField } from '@material-ui/core'
 import PropTypes from 'prop-types';
 import Form from '../../../components/Form.js';
 import Button from '../../../components/Button.js';
-
-class TransferModal extends Component {
-
+class ContactModal extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      open: this.props.open,
-    }
+    this.state = this.props
   }
 
   openModal = e => {
@@ -21,17 +17,12 @@ class TransferModal extends Component {
   }
 
   render() {
+    const { data } = this.state
     return (
       <Modal open={this.state.open}>
           <Form>
-            <Typography>Irelia</Typography>
-            <TextField
-              label="Valor" 
-              InputProps={{
-                startAdornment: <InputAdornment>R$</InputAdornment>
-              }}
-            />
-            <Button variant="contained" color="primary" size="small">Transferir</Button>
+            <TextField label="Nome" value={data.name}></TextField>
+            <Button variant="contained" color="primary" size="small">Editar</Button>
             <Button variant="contained" color="secondary" size="small" onClick={this.openModal}>Fechar</Button>
           </Form>
         </Modal>
@@ -39,12 +30,13 @@ class TransferModal extends Component {
   }
 }
 
-TransferModal.propTypes = {
-  open: PropTypes.bool
+ContactModal.propTypes = {
+  open: PropTypes.bool,
+  data: PropTypes.object.isRequired,
 }
 
-TransferModal.defaultProps = {
-  open: false
+ContactModal.defaultProps = {
+  open: false,
 }
 
-export default TransferModal;
+export default ContactModal;

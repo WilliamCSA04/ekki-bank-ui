@@ -3,25 +3,36 @@ import { ListItemText, ListItem, Icon, Table, TableBody, TableRow, TableCell, Ic
 import Paper from '../../../components/Paper.js';
 import Inline from '../../../components/Inline.js';
 import TransferModal from './TransferModal.js';
+import ContactModal from './ContactModal.js';
 
 class ContactListItem extends Component {
 
 
   constructor(props) {
     super(props);
-    this.modal = React.createRef();
+    this.transferModal = React.createRef();
+    this.contactModal = React.createRef();
   }
 
-  onClick = e => {
-    this.modal.current.setState({open: true});
+  openTransferModal = e => {
+    this.transferModal.current.setState({open: true});
+  }
+
+  openContactModal = e => {
+    this.contactModal.current.setState({open: true});
   }
 
   render() {
     return (
       <Fragment>
-        <TransferModal 
-          open={true}
-          ref={this.modal}
+        <ContactModal
+          data={{
+            name: "Irelia"
+          }}
+          ref={this.contactModal}  
+        />
+        <TransferModal
+          ref={this.transferModal}
         />
         <ListItem>
           <Paper>
@@ -31,7 +42,7 @@ class ContactListItem extends Component {
                   <TableCell style={{border: "none"}}>
                     <ListItemText>Nome: Irelia</ListItemText>
                     <Inline>
-                      <IconButton aria-label="editar">
+                      <IconButton aria-label="editar" onClick={this.openContactModal}>
                         <Icon>edit</Icon>
                         </IconButton>
                       <IconButton aria-label="deletar">
@@ -40,7 +51,7 @@ class ContactListItem extends Component {
                     </Inline>
                   </TableCell>
                   <TableCell align="right" style={{border: "none"}}>
-                    <IconButton aria-label="Abrir modal de transferencia" onClick={this.onClick}>
+                    <IconButton aria-label="Abrir modal de transferencia" onClick={this.openTransferModal}>
                       <Icon>chevron_right</Icon>
                     </IconButton>
                   </TableCell>
