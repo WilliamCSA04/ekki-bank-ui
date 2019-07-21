@@ -9,6 +9,7 @@ class Modal extends Component {
         aria-labelledby={this.props.arialabel}
         aria-describedby={this.props.ariadescribe}
         open={this.props.open}
+        ref={this.props.ref}
       >
         {this.props.children}
       </MaterialModal>
