@@ -9,7 +9,7 @@ class ContactListItem extends Component {
     return (
       <ListItem>
         <Paper>
-          <Table dense>
+          <Table>
             <TableBody>
               <TableRow>
                 <TableCell style={{border: "none"}}>
