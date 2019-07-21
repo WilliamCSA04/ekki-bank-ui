@@ -15,7 +15,8 @@ function Button(props){
   return (
     <MaterialButton 
       variant={props.variant} 
-      color={props.color} 
+      color={props.color}
+      size={props.size} 
       className={margin}>{props.children}
     </MaterialButton>
   );
