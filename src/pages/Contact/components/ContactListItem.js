@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Typography, ListItem, Paper } from '@material-ui/core';
+import { Typography, ListItem } from '@material-ui/core';
+import Paper from '../../../components/Paper.js';
+
 
 class ContactListItem extends Component {
   render() {
