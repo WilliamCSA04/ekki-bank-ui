@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Tabs, Tab } from '@material-ui/core';
+import Header from './Header';
 class Navbar extends Component {
 
   constructor(props){
@@ -8,10 +9,13 @@ class Navbar extends Component {
 
   render() {
     return (
-      <Tabs variant="fullWidth">
-        <Tab label="Contatos" component="a" href="/contacts" />
-        <Tab label="Extrato" component="a" href="/statement" />
-      </Tabs>
+      <Fragment>
+        <Header />
+        <Tabs variant="fullWidth">
+          <Tab label="Contatos" component="a" href="/contacts" />
+          <Tab label="Extrato" component="a" href="/statement" />
+        </Tabs>
+      </Fragment>
     );
   }
 }
