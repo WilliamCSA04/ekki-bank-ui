@@ -4,7 +4,6 @@ import Paper from '../../../components/Paper.js';
 import Inline from '../../../components/Inline.js';
 import Modal from '../../../components/Modal.js';
 import Form from '../../../components/Form.js';
-import { Helmet } from "react-helmet";
 import Button from '../../../components/Button.js';
 
 class ContactListItem extends Component {
@@ -22,9 +21,6 @@ class ContactListItem extends Component {
     const { model } = this.state
     return (
       <Fragment>
-        <Helmet>
-          <title>Contatos - Ekki bank</title>
-        </Helmet>
         <Modal open={model.open}>
           <Form>
             <Typography>Irelia</Typography>
