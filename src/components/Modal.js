@@ -1,33 +1,32 @@
 import React, { Component } from 'react';
-import { Modal } from '@material-ui/core';
+import { Modal as MaterialModal } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
-class TranferModal extends Component {
+class Modal extends Component {
   render() {
     return (
-      <Modal
+      <MaterialModal
         aria-labelledby={this.props.arialabel}
         aria-describedby={this.props.ariadescribe}
         open={this.props.open}
-        onClose={handleClose}
       >
         {this.props.children}
-      </Modal>
+      </MaterialModal>
     );
   }
 }
 
-TranferModal.propTypes = {
+Modal.propTypes = {
   arialabel: PropTypes.string,
   ariadescribe: PropTypes.string,
   open: PropTypes.bool
 };
 
-TranferModal.defaultProps = {
+Modal.defaultProps = {
   arialabel: "",
   ariadescribe: "",
   open: false,
 };
 
 
-export default TranferModal;
+export default Modal;
