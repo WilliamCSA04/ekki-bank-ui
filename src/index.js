@@ -6,12 +6,12 @@ import * as serviceWorker from './serviceWorker';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import { purple, red } from '@material-ui/core/colors';
+import { purple, red, blue } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
     primary: { main: purple[500] }, // Purple and green play nicely together.
-    secondary: { main: '#11cb5f' }, // This is just green.A700 as hex.
+    secondary: { main: blue[500] }, // This is just green.A700 as hex.
     error: { main: red[500] }
   },
 });
