@@ -48,6 +48,7 @@ class ContactListItem extends Component {
           ref={this.transferModal}
         />
         <DeleteModal
+          handleDelete={this.props.handleDelete}
           data={this.state}
           ref={this.deleteModal}
         />

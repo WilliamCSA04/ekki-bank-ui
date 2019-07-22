@@ -18,6 +18,7 @@ class DeleteModal extends Component {
     const { contactedId, contactingId } = this.state.data
     api.delete(`/contact/${contactedId}/${contactingId}/delete`).then(({ data }) => {
       alert(data.message)
+      this.props.handleDelete(contactingId, contactedId);
       this.setState({open: false});
     }).catch(err => {
       alert("Houve um erro ao tentar atualizar este contato")
@@ -47,6 +48,7 @@ class DeleteModal extends Component {
 DeleteModal.propTypes = {
   open: PropTypes.bool,
   data: PropTypes.object.isRequired,
+  handleDelete: PropTypes.func,
 }
 
 DeleteModal.defaultProps = {

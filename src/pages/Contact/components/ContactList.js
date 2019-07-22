@@ -26,12 +26,19 @@ class ContactList extends Component {
     })
   }
 
+  removeContact = (contactingId, contactedId) => {
+    const newList = this.state.contacts.filter(contact => {
+      return !(contact.contactingId == contactingId && contact.contactedId == contactedId)
+    })
+    this.setState({contacts: newList})
+  }
+
   listContacts = () => {
     if(this.state.contacts.length == 0){
       return <Typography style={{textAlign: "center"}}>Nenhum contato encontrado</Typography>
     }else{
       return this.state.contacts.map(contact => {
-        return <ContactListItem data={contact} />
+        return <ContactListItem handleDelete={this.removeContact} data={contact} />
       })
     }
   }
