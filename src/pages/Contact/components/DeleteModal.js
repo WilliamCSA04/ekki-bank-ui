@@ -19,7 +19,10 @@ class DeleteModal extends Component {
     api.delete(`/contact/${contactedId}/${contactingId}/delete`).then(({ data }) => {
       alert(data.message)
       this.props.handleDelete(contactingId, contactedId);
-      this.setState({open: false});
+      this.setState({data: {
+        contactedId: '',
+        contactingId: '',
+      }, open: false});
     }).catch(err => {
       alert("Houve um erro ao tentar atualizar este contato")
     })
@@ -47,12 +50,16 @@ class DeleteModal extends Component {
 
 DeleteModal.propTypes = {
   open: PropTypes.bool,
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object,
   handleDelete: PropTypes.func,
 }
 
 DeleteModal.defaultProps = {
   open: false,
+  data: {
+    contactedId: '',
+    contactingId: '',
+  },
 }
 
 export default DeleteModal;
