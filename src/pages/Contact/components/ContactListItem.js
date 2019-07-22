@@ -28,9 +28,7 @@ class ContactListItem extends Component {
     return (
       <Fragment>
         <ContactModal
-          data={{
-            name: "Irelia"
-          }}
+          data={this.state}
           ref={this.contactModal}  
         />
         <TransferModal

@@ -7,7 +7,7 @@ import Button from '../../../components/Button.js';
 class ContactModal extends Component {
   constructor(props){
     super(props);
-    this.state = this.props
+    this.state = this.props.data
   }
 
   openModal = e => {
@@ -16,12 +16,16 @@ class ContactModal extends Component {
     this.setState({open})
   }
 
+  onChange = e => {
+    this.setState({[e.target.name]: e.target.value})
+  }
+
   render() {
-    const { data } = this.state
+    const { nickname } = this.state
     return (
       <Modal open={this.state.open}>
           <Form>
-            <TextField label="Nome" value={data.name}></TextField>
+            <TextField label="Nome" value={nickname} name="nickname" onChange={this.onChange}></TextField>
             <Button variant="contained" color="primary" size="small">Editar</Button>
             <Button variant="contained" color="secondary" size="small" onClick={this.openModal}>Fechar</Button>
           </Form>
