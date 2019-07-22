@@ -3,6 +3,7 @@ import { List, Typography, Grid } from '@material-ui/core';
 import ContactListItem from './ContactListItem.js';
 import api from '../../../services/api';
 import Button from '../../../components/Button.js';
+import CreateModal from './CreateModal'
 
 class ContactList extends Component {
 
@@ -11,7 +12,13 @@ class ContactList extends Component {
     this.state = {
       contacts: []
     }
+    this.createModal = React.createRef();
   }
+
+  openCreateModal = e => {
+    this.createModal.current.setState({open: true});
+  }
+
 
   componentDidMount(){
     const user = JSON.parse(sessionStorage.getItem('ekki-user'));
@@ -33,6 +40,12 @@ class ContactList extends Component {
     this.setState({contacts: newList})
   }
 
+  addContact = (contact) => {
+    const { contacts } = this.state
+    contacts.push(contact)
+    this.setState({contacts: contacts});
+  }
+
   listContacts = () => {
     if(this.state.contacts.length == 0){
       return <Typography style={{textAlign: "center"}}>Nenhum contato encontrado</Typography>
@@ -45,10 +58,18 @@ class ContactList extends Component {
 
   render() {
     return (
+      <Fragment>
+        <CreateModal
+          ref={this.createModal}
+          handleCreate={this.addContact}
+        />
         <List>
           {this.listContacts()}
         </List>
-        
+        <Grid item style={{textAlign: "center"}}>
+          <Button variant="contained" color="primary" onClick={this.openCreateModal}>Adicionar Contato</Button>
+        </Grid>
+      </Fragment>
     );
   }
 }

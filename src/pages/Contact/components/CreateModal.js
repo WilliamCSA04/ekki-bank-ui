@@ -19,6 +19,7 @@ class CreateModal extends Component {
     if(noError){
       const contactingId = JSON.parse(sessionStorage.getItem('ekki-user')).id
       api.post('/contact', { nickname, cpf, contactingId }).then(({ data }) => {
+        this.props.handleCreate(data.contact);
         alert(data.message)
         this.setState({data: data.contact, open: false});
       }).catch(err => {
@@ -62,6 +63,7 @@ class CreateModal extends Component {
 
 CreateModal.propTypes = {
   open: PropTypes.bool,
+  handleCreate: PropTypes.func
 }
 
 CreateModal.defaultProps = {
