@@ -1,12 +1,45 @@
 import React, { Component } from 'react';
-import { List } from '@material-ui/core';
+import { List, Typography } from '@material-ui/core';
 import TransactionListItem from './TransactionListItem';
+import api from '../../../services/api';
 
 class TransactionList extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      transferences: []
+    }
+  }
+
+  componentDidMount(){
+    const account = JSON.parse(sessionStorage.getItem('ekki-user')).account;
+    api.get(`/user/${account.id}/contacts`).then(({ data }) => {
+      this.setState({transferences: data})
+    }).catch(err => {
+      if(err.response.data.message){
+        alert(err.response.data.message)
+      }else{
+        alert("Ocorreu um erro ao tentar buscar seus contatos");
+      }
+    })
+  }
+
+  listTransaction = () => {
+    const { transferences } = this.state;
+    if(transferences.length == 0){
+      return <Typography style={{textAlign: "center"}}>Nenhuma transação foi realizada até o momento</Typography>
+    }else{
+      return transferences.map(transference => {
+        return <TransactionListItem data={transference} />
+      })
+    }
+  }
+
   render() {
     return (
       <List>
-        <TransactionListItem />
+        {this.listTransaction()}
       </List>
     );
   }
