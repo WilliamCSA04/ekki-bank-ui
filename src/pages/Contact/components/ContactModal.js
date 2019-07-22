@@ -14,7 +14,12 @@ class ContactModal extends Component {
 
   onClick = e => {
     e.preventDefault();
-
+    const { nickname, contactedId, contactingId } = this.state.data
+    api.put('/contact', { nickname, contactedId, contactingId }).then(({ data }) => {
+      this.setState({data: data, open: false});
+    }).catch(err => {
+      alert("Houve um erro ao tentar atualizar este contato")
+    })
   }
 
   openModal = e => {
@@ -35,7 +40,7 @@ class ContactModal extends Component {
       <Modal open={this.state.open}>
           <Form>
             <TextField label="Nome" value={nickname} name="nickname" onChange={this.onChange}></TextField>
-            <Button variant="contained" color="primary" size="small">Editar</Button>
+            <Button variant="contained" color="primary" size="small" onClick={this.onClick}>Editar</Button>
             <Button variant="contained" color="secondary" size="small" onClick={this.openModal}>Fechar</Button>
           </Form>
         </Modal>
