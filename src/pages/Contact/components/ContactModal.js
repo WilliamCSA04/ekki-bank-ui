@@ -4,10 +4,17 @@ import { TextField } from '@material-ui/core'
 import PropTypes from 'prop-types';
 import Form from '../../../components/Form.js';
 import Button from '../../../components/Button.js';
+import api from '../../../services/api';
+
 class ContactModal extends Component {
   constructor(props){
     super(props);
-    this.state = this.props.data
+    this.state = this.props
+  }
+
+  onClick = e => {
+    e.preventDefault();
+
   }
 
   openModal = e => {
@@ -17,11 +24,13 @@ class ContactModal extends Component {
   }
 
   onChange = e => {
-    this.setState({[e.target.name]: e.target.value})
+    const { data } = this.state
+    data[e.target.name] = e.target.value
+    this.setState(data)
   }
 
   render() {
-    const { nickname } = this.state
+    const { nickname } = this.state.data
     return (
       <Modal open={this.state.open}>
           <Form>
