@@ -14,8 +14,8 @@ class TransactionList extends Component {
 
   componentDidMount(){
     const account = JSON.parse(sessionStorage.getItem('ekki-user')).account;
-    api.get(`/user/${account.id}/contacts`).then(({ data }) => {
-      this.setState({transferences: data})
+    api.get(`/account/${account.id}/statement`).then(({ data }) => {
+      this.setState({transferences: data.transactionHistory})
     }).catch(err => {
       if(err.response.data.message){
         alert(err.response.data.message)
