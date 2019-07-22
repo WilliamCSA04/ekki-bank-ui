@@ -17,7 +17,7 @@ class TransactionListItem extends Component {
       <ListItem>
         <Paper style={{backgroundColor: color}}>
           <ListItemText style={{color: 'white'}}>{name}</ListItemText>
-          <ListItemText style={{color: 'white'}}>R$ {amount}</ListItemText>
+          <ListItemText style={{color: 'white'}}>R$ {amount.replace('.', ',')}</ListItemText>
           <ListItemText style={{color: 'white'}}>{message}</ListItemText>
         </Paper>
       </ListItem>
