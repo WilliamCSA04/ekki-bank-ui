@@ -16,7 +16,7 @@ class DeleteModal extends Component {
   onClick = e => {
     e.preventDefault();
     const { contactedId, contactingId } = this.state.data
-    api.delete('/contact', { contactedId, contactingId }).then(({ data }) => {
+    api.delete(`/contact/${contactedId}/${contactingId}/delete`).then(({ data }) => {
       alert(data.message)
       this.setState({open: false});
     }).catch(err => {
