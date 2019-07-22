@@ -38,14 +38,10 @@ class ContactList extends Component {
 
   render() {
     return (
-      <Fragment>
         <List>
           {this.listContacts()}
         </List>
-        <Grid item style={{textAlign: "center"}}>
-          <Button variant="contained" color="primary">Adicionar Contato</Button>
-        </Grid>
-      </Fragment>
+        
     );
   }
 }
