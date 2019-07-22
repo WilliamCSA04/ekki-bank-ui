@@ -14,9 +14,10 @@ class CreateModal extends Component {
 
   onClick = e => {
     e.preventDefault();
-    const { nickname, cpf, contactingId } = this.state.data
+    const { nickname, cpf } = this.state.data
     const noError = !this.state.error && cpf != "";
     if(noError){
+      const contactingId = JSON.parse(sessionStorage.getItem('ekki-user')).id
       api.post('/contact', { nickname, cpf, contactingId }).then(({ data }) => {
         alert(data.message)
         this.setState({data: data.contact, open: false});
@@ -68,7 +69,6 @@ CreateModal.defaultProps = {
   data: {
     nickname: "",
     cpf: "",
-    contactingId: JSON.parse(sessionStorage.getItem('ekki-user')).id
   },
   error: false
 }
