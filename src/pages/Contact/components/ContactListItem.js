@@ -29,12 +29,17 @@ class ContactListItem extends Component {
     this.deleteModal.current.setState({open: true});
   }
 
+  handleUpdate = newState => {
+    this.setState(newState);
+  }
+
 
   render() {
     const { nickname } = this.state
     return (
       <Fragment>
         <ContactModal
+          handleUpdate={this.handleUpdate}
           data={this.state}
           ref={this.contactModal}  
         />

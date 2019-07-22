@@ -16,7 +16,8 @@ class ContactModal extends Component {
     e.preventDefault();
     const { nickname, contactedId, contactingId } = this.state.data
     api.put('/contact', { nickname, contactedId, contactingId }).then(({ data }) => {
-      this.setState({data: data, open: false});
+      this.props.handleUpdate(data.contact);
+      this.setState({data: data.contact, open: false});
     }).catch(err => {
       alert("Houve um erro ao tentar atualizar este contato")
     })
@@ -51,6 +52,7 @@ class ContactModal extends Component {
 ContactModal.propTypes = {
   open: PropTypes.bool,
   data: PropTypes.object.isRequired,
+  handleUpdate: PropTypes.func.isRequired,
 }
 
 ContactModal.defaultProps = {
