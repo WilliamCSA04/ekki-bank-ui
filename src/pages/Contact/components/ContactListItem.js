@@ -32,6 +32,7 @@ class ContactListItem extends Component {
           ref={this.contactModal}  
         />
         <TransferModal
+          data={this.state}
           ref={this.transferModal}
         />
         <ListItem>

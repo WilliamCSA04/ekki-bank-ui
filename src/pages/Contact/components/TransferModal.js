@@ -9,9 +9,7 @@ class TransferModal extends Component {
 
   constructor(props){
     super(props);
-    this.state = {
-      open: this.props.open,
-    }
+    this.state = this.props
   }
 
   openModal = e => {
@@ -19,14 +17,22 @@ class TransferModal extends Component {
     const open = !this.state.open
     this.setState({open})
   }
+  
+  onChange = e => {
+    const { data } = this.state
+    data[e.target.name] = e.target.value
+    this.setState(data)
+  }
 
   render() {
+    const { nickname } = this.state.data
     return (
       <Modal open={this.state.open}>
           <Form>
-            <Typography>Irelia</Typography>
+            <Typography>{nickname}</Typography>
             <TextField
-              label="Valor" 
+              label="Valor"
+              name="amount"
               InputProps={{
                 startAdornment: <InputAdornment>R$</InputAdornment>
               }}
