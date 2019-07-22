@@ -33,13 +33,16 @@ class Header extends Component {
     const { account } = this.state
     console.log(`account-${account.id}`)
     io.on(`account-${account.id}`, data => {
+      const { user } = this.state;
+      user.account = data;
+      sessionStorage.setItem('ekki-user', JSON.stringify(user))
       this.setState({account: data})
     })
   }
 
   render() {
-    const user = this.state
-    const { balance, limit, number } = user.account;
+    const {user, account} = this.state
+    const { balance, limit, number } = account;
     const { header, listText } = style;
     return (
       <Typography component='header' style={header}>
