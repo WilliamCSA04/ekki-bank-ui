@@ -20,7 +20,7 @@ class ContactList extends Component {
       if(err.response.data.message){
         alert(err.response.data.message)
       }else{
-        alert("Ocorreu um erro ao tentar buscar seus contaos");
+        alert("Ocorreu um erro ao tentar buscar seus contatos");
       }
     })
   }
