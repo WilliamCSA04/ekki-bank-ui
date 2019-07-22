@@ -21,7 +21,10 @@ class CreateModal extends Component {
       api.post('/contact', { nickname, cpf, contactingId }).then(({ data }) => {
         this.props.handleCreate(data.contact);
         alert(data.message)
-        this.setState({data: data.contact, open: false});
+        this.setState({data: {
+          nickname: "",
+          cpf: "",
+        }, open: false});
       }).catch(err => {
         alert("Houve um erro ao tentar criar este contato")
       })
