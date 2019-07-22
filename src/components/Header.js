@@ -30,7 +30,6 @@ class Header extends Component {
 
   sub = () => {
     const { account } = this.state
-    console.log(`account-${account.id}`)
     io.on(`account-${account.id}`, data => {
       const { user } = this.state;
       user.account = data;
