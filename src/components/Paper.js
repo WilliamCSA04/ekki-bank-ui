@@ -11,9 +11,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function PaperSheet(props) {
   const classes = useStyles();
-
   return (
-    <MaterialPaper className={classes.root} square={props.square} elevation0>
+    <MaterialPaper className={classes.root} style={props.style} square={props.square} elevation0>
       {props.children}
     </MaterialPaper>
   );

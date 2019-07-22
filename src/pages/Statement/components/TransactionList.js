@@ -17,11 +17,7 @@ class TransactionList extends Component {
     api.get(`/account/${account.id}/statement`).then(({ data }) => {
       this.setState({transferences: data.transactionHistory})
     }).catch(err => {
-      if(err.response.data.message){
-        alert(err.response.data.message)
-      }else{
-        alert("Ocorreu um erro ao tentar buscar seus contatos");
-      }
+      alert("Ocorreu um erro ao tentar buscar seus contatos");
     })
   }
 

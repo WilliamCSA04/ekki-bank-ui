@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { ListItemText, ListItem} from '@material-ui/core';
+import { ListItemText, ListItem, Badge } from '@material-ui/core';
+import { green, red } from '@material-ui/core/colors';
 import Paper from '../../../components/Paper.js';
 
 class TransactionListItem extends Component {
@@ -10,13 +11,14 @@ class TransactionListItem extends Component {
   }
 
   render() {
-    const { name, amount, message } = this.state
+    const { name, amount, message, status } = this.state
+    const color = status == 1 ? red[500] : green[500]
     return (
       <ListItem>
-        <Paper>
-          <ListItemText>{name}</ListItemText>
-          <ListItemText>R$ {amount}</ListItemText>
-          <ListItemText>{message}</ListItemText>
+        <Paper style={{backgroundColor: color}}>
+          <ListItemText style={{color: 'white'}}>{name}</ListItemText>
+          <ListItemText style={{color: 'white'}}>R$ {amount}</ListItemText>
+          <ListItemText style={{color: 'white'}}>{message}</ListItemText>
         </Paper>
       </ListItem>
     );
