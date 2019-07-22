@@ -13,12 +13,32 @@ const style = {
   }
 }
 
+const io = require('socket.io-client')('http://localhost:3001/');
+
 class Header extends Component {
 
+  constructor(props){
+    super(props);
+    const user = JSON.parse(sessionStorage.getItem('ekki-user'));
+    const account = user.account;
+    this.state = { user, account};
+  }
 
+  async componentDidMount(){
+    this.sub();
+    console.log("yo")
+  }
+
+  sub = () => {
+    const { account } = this.state
+    console.log(`account-${account.id}`)
+    io.on(`account-${account.id}`, data => {
+      this.setState({account: data})
+    })
+  }
 
   render() {
-    const user = JSON.parse(sessionStorage.getItem('ekki-user'));
+    const user = this.state
     const { balance, limit, number } = user.account;
     const { header, listText } = style;
     return (
