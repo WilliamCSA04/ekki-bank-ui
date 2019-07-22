@@ -14,19 +14,28 @@ class CreateModal extends Component {
 
   onClick = e => {
     e.preventDefault();
-    const { nickname, cpf } = this.state.data
-    api.post('/contact', { nickname, cpf }).then(({ data }) => {
-      alert(data.message)
-      this.setState({data: data.contact, open: false});
-    }).catch(err => {
-      alert("Houve um erro ao tentar atualizar este contato")
-    })
+    const { nickname, cpf, contactingId } = this.state.data
+    const noError = !this.state.error && cpf != "";
+    if(noError){
+      api.post('/contact', { nickname, cpf, contactingId }).then(({ data }) => {
+        alert(data.message)
+        this.setState({data: data.contact, open: false});
+      }).catch(err => {
+        alert("Houve um erro ao tentar criar este contato")
+      })
+    }else{
+      alert("Verifique o CPF inserido");
+    }
   }
 
   openModal = e => {
     e.preventDefault();
     const open = !this.state.open
     this.setState({open})
+  }
+
+  validateCpf = e => {
+    this.setState({error: e.target.value.length != 11})
   }
 
   onChange = e => {
@@ -40,7 +49,7 @@ class CreateModal extends Component {
     return (
       <Modal open={this.state.open}>
           <Form>
-            <TextField required label="CPF" value={cpf} name="cpf" onChange={this.onChange}></TextField>
+            <TextField required label="CPF" error={this.state.error} onBlur={this.validateCpf} value={cpf} name="cpf" onChange={this.onChange}></TextField>
             <TextField label="Nome" value={nickname} name="nickname" onChange={this.onChange}></TextField>
             <Button variant="contained" color="primary" size="small" onClick={this.onClick}>Adicionar</Button>
             <Button variant="contained" color="secondary" size="small" onClick={this.openModal}>Fechar</Button>
@@ -59,7 +68,9 @@ CreateModal.defaultProps = {
   data: {
     nickname: "",
     cpf: "",
-  }
+    contactingId: JSON.parse(sessionStorage.getItem('ekki-user')).id
+  },
+  error: false
 }
 
 export default CreateModal;
