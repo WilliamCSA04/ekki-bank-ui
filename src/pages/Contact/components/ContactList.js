@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import { List, Typography } from '@material-ui/core';
+import React, { Component, Fragment } from 'react';
+import { List, Typography, Grid } from '@material-ui/core';
 import ContactListItem from './ContactListItem.js';
 import api from '../../../services/api';
+import Button from '../../../components/Button.js';
 
 class ContactList extends Component {
 
@@ -37,9 +38,14 @@ class ContactList extends Component {
 
   render() {
     return (
-      <List>
-        {this.listContacts()}
-      </List>
+      <Fragment>
+        <List>
+          {this.listContacts()}
+        </List>
+        <Grid item style={{textAlign: "center"}}>
+          <Button variant="contained" color="primary">Adicionar Contato</Button>
+        </Grid>
+      </Fragment>
     );
   }
 }
