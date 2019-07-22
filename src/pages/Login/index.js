@@ -34,11 +34,7 @@ class Login extends Component {
         sessionStorage.setItem("ekki-user", JSON.stringify(resp.data))
         this.props.history.push('/contacts')
       }).catch(err => {
-        if(err.response.data.message){
-          alert(err.response.data.message)
-        }else{
-          alert("Ocorreu um erro ao tentar logar, tente novamente");
-        }
+        alert("Ocorreu um erro ao tentar logar, tente novamente");
       })
     }
   }
