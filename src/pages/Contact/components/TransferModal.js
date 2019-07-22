@@ -4,12 +4,37 @@ import { Typography, TextField, InputAdornment } from '@material-ui/core'
 import PropTypes from 'prop-types';
 import Form from '../../../components/Form.js';
 import Button from '../../../components/Button.js';
+import api from '../../../services/api';
 
 class TransferModal extends Component {
 
   constructor(props){
     super(props);
     this.state = this.props
+  }
+  
+  onClick = e => {
+    e.preventDefault();
+    const { error, data, amount } = this.state;
+    let value = parseFloat(amount.replace(',', '.'));
+    console.log(amount)
+    const noError = !error || value > 0
+    if(noError){
+      const { account } = JSON.parse(sessionStorage.getItem('ekki-user'))
+      const body = { 
+        accountId: account.id, 
+        targetUserId: data.contactedId, 
+        amount: value 
+      }
+      api.post('/account/transference', body).then(({data}) => {
+        alert(data.message);
+        this.setState({open: false, amount: "0"})        
+      }).catch(err => {
+        alert("Ocorreu um erro ao processar seu pagamento");
+      })
+    }else{
+      alert("Verifique o valor inserido");
+    }
   }
 
   openModal = e => {
@@ -19,9 +44,10 @@ class TransferModal extends Component {
   }
   
   onChange = e => {
-    const { data } = this.state
-    data[e.target.name] = e.target.value
-    this.setState(data)
+    const value = e.target.value
+    if(value){
+      this.setState({amount: value})
+    }else{}
   }
 
   validateAmount = e => {
@@ -40,12 +66,14 @@ class TransferModal extends Component {
               label="Valor"
               name="amount"
               onBlur={this.validateAmount}
+              onChange={this.onChange}
+              value={this.state.amount}
               error={error}
               InputProps={{
                 startAdornment: <InputAdornment>R$</InputAdornment>
               }}
             />
-            <Button variant="contained" color="primary" size="small">Transferir</Button>
+            <Button variant="contained" color="primary" size="small" onClick={this.onClick}>Transferir</Button>
             <Button variant="contained" color="secondary" size="small" onClick={this.openModal}>Fechar</Button>
           </Form>
         </Modal>
@@ -59,7 +87,8 @@ TransferModal.propTypes = {
 
 TransferModal.defaultProps = {
   open: false,
-  error: false
+  error: false,
+  amount: "0,00"
 }
 
 export default TransferModal;
