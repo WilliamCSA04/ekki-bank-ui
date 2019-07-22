@@ -31,7 +31,7 @@ class Login extends Component {
     const noErrors = !(error.cpf)
     if(noErrors){
       api.post("/user/signin", data).then(resp => {
-        sessionStorage.setItem("ekki-user", JSON.stringify(resp.data.user))
+        sessionStorage.setItem("ekki-user", JSON.stringify(resp.data))
         this.props.history.push('/contacts')
       }).catch(err => {
         if(err.response.data.message){
