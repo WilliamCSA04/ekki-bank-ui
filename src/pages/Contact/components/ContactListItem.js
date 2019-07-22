@@ -10,6 +10,7 @@ class ContactListItem extends Component {
 
   constructor(props) {
     super(props);
+    this.state = this.props.data
     this.transferModal = React.createRef();
     this.contactModal = React.createRef();
   }
@@ -23,6 +24,7 @@ class ContactListItem extends Component {
   }
 
   render() {
+    const { nickname } = this.state
     return (
       <Fragment>
         <ContactModal
@@ -40,7 +42,7 @@ class ContactListItem extends Component {
               <TableBody>
                 <TableRow>
                   <TableCell style={{border: "none"}}>
-                    <ListItemText>Nome: Irelia</ListItemText>
+                    <ListItemText>Nome: {nickname}</ListItemText>
                     <Inline>
                       <IconButton aria-label="editar" onClick={this.openContactModal}>
                         <Icon>edit</Icon>

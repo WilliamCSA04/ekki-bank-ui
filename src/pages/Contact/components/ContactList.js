@@ -29,7 +29,9 @@ class ContactList extends Component {
     if(this.state.contacts.length == 0){
       return <Typography style={{textAlign: "center"}}>Nenhum contato encontrado</Typography>
     }else{
-      return <ContactListItem />
+      return this.state.contacts.map(contact => {
+        return <ContactListItem data={contact} />
+      })
     }
   }
 
