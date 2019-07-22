@@ -5,7 +5,7 @@ import { purple } from '@material-ui/core/colors';
 const style = {
   header: {
     backgroundColor: purple[500],
-    height: '10em',
+    height: '12em',
   },
   listText: {
     color: "white",
