@@ -18,6 +18,7 @@ function Button(props){
       color={props.color}
       size={props.size}
       onClick={props.onClick} 
+      style={props.style}
       className={margin}>{props.children}
     </MaterialButton>
   );

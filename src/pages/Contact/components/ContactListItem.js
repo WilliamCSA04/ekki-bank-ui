@@ -4,6 +4,7 @@ import Paper from '../../../components/Paper.js';
 import Inline from '../../../components/Inline.js';
 import TransferModal from './TransferModal.js';
 import ContactModal from './ContactModal.js';
+import DeleteModal from './DeleteModal.js';
 
 class ContactListItem extends Component {
 
@@ -13,6 +14,7 @@ class ContactListItem extends Component {
     this.state = this.props.data
     this.transferModal = React.createRef();
     this.contactModal = React.createRef();
+    this.deleteModal = React.createRef();
   }
 
   openTransferModal = e => {
@@ -22,6 +24,11 @@ class ContactListItem extends Component {
   openContactModal = e => {
     this.contactModal.current.setState({open: true});
   }
+
+  openDeleteModal = e => {
+    this.deleteModal.current.setState({open: true});
+  }
+
 
   render() {
     const { nickname } = this.state
@@ -35,6 +42,10 @@ class ContactListItem extends Component {
           data={this.state}
           ref={this.transferModal}
         />
+        <DeleteModal
+          data={this.state}
+          ref={this.deleteModal}
+        />
         <ListItem>
           <Paper>
             <Table>
@@ -46,7 +57,7 @@ class ContactListItem extends Component {
                       <IconButton aria-label="editar" onClick={this.openContactModal}>
                         <Icon>edit</Icon>
                         </IconButton>
-                      <IconButton aria-label="deletar">
+                      <IconButton aria-label="deletar" onClick={this.openDeleteModal}>
                         <Icon>delete_outline</Icon>
                       </IconButton>
                     </Inline>

@@ -82,7 +82,8 @@ class TransferModal extends Component {
 }
 
 TransferModal.propTypes = {
-  open: PropTypes.bool
+  open: PropTypes.bool,
+  data: PropTypes.object.isRequired
 }
 
 TransferModal.defaultProps = {
