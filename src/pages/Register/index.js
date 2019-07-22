@@ -24,17 +24,23 @@ class Register extends Component {
   }
 
   onChange = e => {
-    this.setState({[e.target.name]: e.target.value})
+    const { data } = this.state;
+    data[e.target.name] = e.target.value
+    this.setState({data: data})
   }
 
   onClick = e => {
     e.preventDefault();
-    api.post("/user", this.state).then(resp => {
-      sessionStorage.setItem("ekki-user", JSON.stringify(resp.data))
-      this.props.history.push('/login')
-    }).catch(err => {
-      console.log(err)
-    })
+    const { error, data } = this.state;
+    const noErrors = !(error.name || error.cpf || error.phone)
+    if(noErrors){
+      api.post("/user", data).then(resp => {
+        sessionStorage.setItem("ekki-user", JSON.stringify(resp.data))
+        this.props.history.push('/login')
+      }).catch(err => {
+        alert("Ocorreu um erro ao tentar cadastra-lo, tente novamente");
+      })
+    }
   }
 
   validateName = e => {
