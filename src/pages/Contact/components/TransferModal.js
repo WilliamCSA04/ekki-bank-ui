@@ -24,15 +24,23 @@ class TransferModal extends Component {
     this.setState(data)
   }
 
+  validateAmount = e => {
+    const error = !(e.target.value.match(/^[0-9]+(\?,|.[0-9]{1,2})?$/))
+    this.setState({error: error})
+  }
+
   render() {
     const { nickname } = this.state.data
+    const { error } = this.state
     return (
       <Modal open={this.state.open}>
           <Form>
-            <Typography>{nickname}</Typography>
+            <Typography style={{textAlign: 'center'}}>Quanto deseja transferir para {nickname}</Typography>
             <TextField
               label="Valor"
               name="amount"
+              onBlur={this.validateAmount}
+              error={error}
               InputProps={{
                 startAdornment: <InputAdornment>R$</InputAdornment>
               }}
@@ -50,7 +58,8 @@ TransferModal.propTypes = {
 }
 
 TransferModal.defaultProps = {
-  open: false
+  open: false,
+  error: false
 }
 
 export default TransferModal;
