@@ -26,7 +26,6 @@ class Header extends Component {
 
   async componentDidMount(){
     this.sub();
-    console.log("yo")
   }
 
   sub = () => {
@@ -56,7 +55,7 @@ class Header extends Component {
                   variant: 'h5'
                 }}
               >
-                Saldo: R${balance} - Limite: R${limit}
+                Saldo: R${balance.replace('.',',')} - Limite: R${limit.replace('.',',')}
               </ListItemText>
             </ListItem>
             <ListItem style={listText}>
