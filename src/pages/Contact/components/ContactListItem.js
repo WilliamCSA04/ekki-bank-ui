@@ -38,9 +38,9 @@ class ContactListItem extends Component {
   }
 
   render() {
-    const { nickname } = this.state
+    const { nickname, contactedId } = this.state
     return (
-      <Fragment>
+      <Fragment key={contactedId}>
         <ContactModal
           handleUpdate={this.handleUpdate}
           data={this.state}
