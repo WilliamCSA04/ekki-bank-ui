@@ -33,6 +33,9 @@ class ContactListItem extends Component {
     this.setState(newState);
   }
 
+  componentWillReceiveProps({data}){
+    this.setState(data);
+  }
 
   render() {
     const { nickname } = this.state
