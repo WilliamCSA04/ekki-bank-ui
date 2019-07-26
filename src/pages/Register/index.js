@@ -36,7 +36,10 @@ class Register extends Component {
     if(noErrors){
       api.post("/user", data).then(resp => {
         sessionStorage.setItem("ekki-user", JSON.stringify(resp.data.user))
+        alert("Usuário criado com sucesso!")
         this.props.history.push('/login')
+      }).catch(err => {
+        alert(err.response.data.message)
       }).catch(err => {
         alert("Ocorreu um erro ao tentar cadastra-lo, tente novamente");
       })

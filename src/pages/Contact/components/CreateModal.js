@@ -26,6 +26,8 @@ class CreateModal extends Component {
           cpf: "",
         }, open: false});
       }).catch(err => {
+        alert(err.response.data.message)
+      }).catch(err => {
         alert("Houve um erro ao tentar criar este contato")
       })
     }else{

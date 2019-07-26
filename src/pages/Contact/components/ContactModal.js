@@ -19,6 +19,8 @@ class ContactModal extends Component {
       this.props.handleUpdate(data.contact);
       this.setState({data: data.contact, open: false});
     }).catch(err => {
+      alert(err.response.data.message)
+    }).catch(err => {
       alert("Houve um erro ao tentar atualizar este contato")
     })
   }

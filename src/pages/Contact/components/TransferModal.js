@@ -27,7 +27,9 @@ class TransferModal extends Component {
       }
       api.post('/account/transference', body).then(({data}) => {
         alert(data.message);
-        this.setState({open: false, amount: "0"})        
+        this.setState({open: false, amount: "0,00"})        
+      }).catch(err => {
+        alert(err.response.data.message)
       }).catch(err => {
         alert("Ocorreu um erro ao processar seu pagamento");
       })
