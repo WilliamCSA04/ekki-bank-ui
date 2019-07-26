@@ -17,7 +17,7 @@ class TransferModal extends Component {
     e.preventDefault();
     const { error, data, amount } = this.state;
     let value = parseFloat(amount.replace(',', '.'));
-    const noError = !error || value > 0
+    const noError = !error && value > 0
     if(noError){
       const { account } = JSON.parse(sessionStorage.getItem('ekki-user'))
       const body = { 
